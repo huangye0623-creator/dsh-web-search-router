@@ -1,0 +1,16 @@
+# Tavily 远程 MCP 配置示例（DSH profile patch）
+#
+# 用法：把下面整段加到 profiles/<profile>/cordis.patch.yml 末尾。
+# 前提：环境变量 TAVILY_API_KEY 已在 app 进程里可见（值不要写进本文件）。
+# 说明：app 自带 @deepseek-ai/dsh-mcp-client，无需安装任何包。
+# 回滚：删掉这个 insert 块，重启/热加载即可。
+
+- insert:
+    - id: mcp-tavily
+      name: "@deepseek-ai/dsh-mcp-client"
+      config:
+        serverName: tavily
+        transport: streamable-http
+        url: https://mcp.tavily.com/mcp/
+        headers:
+          Authorization: !!js '`Bearer ${process.env.TAVILY_API_KEY}`'
