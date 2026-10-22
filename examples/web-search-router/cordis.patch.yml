@@ -1,0 +1,25 @@
+# Bundle patch for dsh-web-search-router (2026-10-22 升级为「智能搜索选路器」).
+#
+# Adds one host-plane row: the router provider (id stays `tavily`, because the profile's
+# `- id: web` row selects that id). The route is chosen by profile config, not by a pin,
+# so this row only needs to exist for the provider to be registered.
+#
+# The profile's own `- id: web-search-router` config overrides this whole config block
+# (id-targeted overrides replace config), so these values are fallbacks for the case where
+# the profile row is removed.
+#
+# Removing this bundle removes the row with it.
+
+- insert:
+    - id: web-search-router
+      name: dsh-web-search-router
+      config:
+        apiKeyEnv: TAVILY_API_KEY
+        searchDepth: advanced
+        includeAnswer: true
+        keyless: true
+        mode: auto
+        fallback: true
+        showMarker: true
+        timeoutMs: 45000
+        importanceThreshold: 2
