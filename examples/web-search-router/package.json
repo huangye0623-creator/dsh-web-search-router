@@ -1,0 +1,23 @@
+{
+  "name": "dsh-web-search-router",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Smart web_search router for DeepSeek Harness: per-query routing between Tavily and the harness's built-in DeepSeek search, automatic fallback with cooldowns, a backend marker on every result, and a status/control tool.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
